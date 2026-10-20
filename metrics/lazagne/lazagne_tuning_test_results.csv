@@ -1,0 +1,121 @@
+rule_version,test_suite,test_id,endpoint,ground_truth,scenario,command_or_action,alerts_observed,classification,telemetry_verified,notes
+v1,baseline_16,FP01,Windows 10,benign,Benign command-line argument,cmd.exe /c echo FP01 all,1,FP,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,FP02,Windows 10,benign,Benign command-line argument,cmd.exe /c echo FP02 install,1,FP,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,FP03,Windows 10,benign,Benign command-line argument,cmd.exe /c echo FP03 firewall,1,FP,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,FP04,Windows 10,benign,Benign command-line argument,cmd.exe /c echo FP04 recall,1,FP,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,FP05,Windows 10,benign,Benign command-line argument,cmd.exe /c echo FP05 overall,1,FP,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TN01,Windows 10,benign,Benign command-line argument,cmd.exe /c echo TN01 hello,0,TN,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TN02,Windows 10,benign,Benign command-line argument,cmd.exe /c echo TN02 safe,0,TN,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TN03,Windows 10,benign,Benign command-line argument,cmd.exe /c echo TN03 normal,0,TN,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TN04,Windows 10,benign,Benign command-line argument,cmd.exe /c echo TN04 done,0,TN,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TN05,Windows 10,benign,Benign command-line argument,cmd.exe /c echo TN05 success,0,TN,Not separately recorded,Deliberately selected command-line strings; not a representative background workload.
+v1,baseline_16,TP01,Windows 10,positive,Original executable / all,LaZagne.exe all,2,TP,Not separately recorded,
+v1,baseline_16,TP02,Windows 10,positive,Original executable / browsers,LaZagne.exe browsers,2,TP,Not separately recorded,
+v1,baseline_16,TP03,Windows 10,positive,Renamed executable / browsers,audit-test.exe browsers,0,FN,Yes,
+v1,baseline_16,TP04,Windows 10,positive,Renamed executable / all,audit-test.exe all,2,TP,Not separately recorded,
+v1,baseline_16,TP05,Windows 10,positive,Original executable / help,LaZagne.exe -h,2,TP,Not separately recorded,Tool-recognition positive; -h does not demonstrate credential extraction.
+v1,baseline_16,TP06,Windows Server 2019,positive,Renamed executable / browsers / hash matching rule,audit-test.exe browsers,2,TP,Not separately recorded,
+v2,original_16_regression,FP01,Windows 10,benign,Original benign regression case,cmd.exe /c echo FP01 all,0,TN,Not separately recorded,
+v2,original_16_regression,FP02,Windows 10,benign,Original benign regression case,cmd.exe /c echo FP02 install,0,TN,Not separately recorded,
+v2,original_16_regression,FP03,Windows 10,benign,Original benign regression case,cmd.exe /c echo FP03 firewall,0,TN,Not separately recorded,
+v2,original_16_regression,FP04,Windows 10,benign,Original benign regression case,cmd.exe /c echo FP04 recall,0,TN,Not separately recorded,
+v2,original_16_regression,FP05,Windows 10,benign,Original benign regression case,cmd.exe /c echo FP05 overall,0,TN,Not separately recorded,
+v2,original_16_regression,TN01,Windows 10,benign,Original benign regression case,cmd.exe /c echo TN01 hello,0,TN,Not separately recorded,
+v2,original_16_regression,TN02,Windows 10,benign,Original benign regression case,cmd.exe /c echo TN02 safe,0,TN,Not separately recorded,
+v2,original_16_regression,TN03,Windows 10,benign,Original benign regression case,cmd.exe /c echo TN03 normal,0,TN,Not separately recorded,
+v2,original_16_regression,TN04,Windows 10,benign,Original benign regression case,cmd.exe /c echo TN04 done,0,TN,Not separately recorded,
+v2,original_16_regression,TN05,Windows 10,benign,Original benign regression case,cmd.exe /c echo TN05 success,0,TN,Not separately recorded,
+v2,original_16_regression,TP01,Windows 10,positive,Original executable / help,LaZagne.exe -h,2,TP,Not separately recorded,
+v2,original_16_regression,TP02,Windows 10,positive,Renamed executable / browsers,audit-test.exe browsers,2,TP,Not separately recorded,
+v2,original_16_regression,TP03,Windows Server 2019,positive,Renamed / matching known hash,audit-test.exe browsers,2,TP,Not separately recorded,
+v2,original_16_regression,TP04,Windows 10,positive,Original executable / all,LaZagne.exe all,2,TP,Not separately recorded,
+v2,original_16_regression,TP05,Windows 10,positive,Original executable / browsers,LaZagne.exe browsers,2,TP,Not separately recorded,
+v2,original_16_regression,TP06,Windows 10,positive,Renamed executable / all,audit-test.exe all,2,TP,Not separately recorded,
+v2,expanded_20,B01,Windows 10,benign,Echo benign phrase ending all,cmd.exe /c echo validation sample all,0,TN,Not separately recorded,
+v2,expanded_20,B02,Windows 10,benign,Benign reference to LaZagne,cmd.exe /c echo Investigating LaZagne,0,TN,Not separately recorded,
+v2,expanded_20,B03,Windows 10,benign,PowerShell printed LaZagne.exe,"powershell.exe -NoProfile -Command ""Write-Output LaZagne.exe""",0,TN,Not separately recorded,
+v2,expanded_20,B04,Windows 10,benign,Echo audit-test.exe browsers,cmd.exe /c echo audit-test.exe browsers,0,TN,Not separately recorded,
+v2,expanded_20,B05,Windows 10,benign,Echo LaZagne incident report,cmd.exe /c echo Read the LaZagne incident report,0,TN,Not separately recorded,
+v2,expanded_20,B06,Windows 10,benign,Legitimate Notepad,Start-Process notepad.exe,0,TN,Not separately recorded,
+v2,expanded_20,B07,Windows 10,benign,Legitimate calculator,Start-Process calc.exe,0,TN,Not separately recorded,
+v2,expanded_20,B08,Windows 10,benign,Legitimate Paint,Start-Process mspaint.exe,0,TN,Not separately recorded,
+v2,expanded_20,B09,Windows 10,benign,Signed Notepad binary renamed LaZagne.exe,"Start-Process ""$benign\LaZagne.exe""",1,FP,Not separately recorded,
+v2,expanded_20,B10,Windows 10,benign,Signed Notepad binary renamed audit-test.exe,"Start-Process ""$benign\audit-test.exe""",0,TN,Not separately recorded,
+v2,expanded_20,P01,Windows 10,positive,Original filename / help / PowerShell,"& ""$src"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P02,Windows 10,positive,Renamed-a / help,"& ""$lab\renamed-a.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P03,Windows 10,positive,Filename LaZagne.exe in folder with spaces,"& ""$lab\Folder With Spaces\LaZagne.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P04,Windows 10,positive,Renamed MAINTENANCE.EXE,"& ""$lab\MAINTENANCE.EXE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P05,Windows 10,positive,Renamed-b / help,"& ""$lab\renamed-b.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P06,Windows Server 2019,positive,Renamed-a / help,"& ""$lab\renamed-a.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P07,Windows Server 2019,positive,Filename LaZagne.exe in folder with spaces,"& ""$lab\Folder With Spaces\LaZagne.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P08,Windows Server 2019,positive,Mixed-case filename LaZaGnE.ExE,"& ""$lab\CaseCheck\LaZaGnE.ExE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P09,Windows Server 2019,positive,Renamed MAINTENANCE.EXE,"& ""$lab\MAINTENANCE.EXE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v2,expanded_20,P10,Windows Server 2019,positive,Renamed-b / help,"& ""$lab\renamed-b.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,B01,Windows 10,benign,Echo benign phrase ending all,cmd.exe /c echo validation sample all,0,TN,Not separately recorded,
+v3,expanded_20_regression,B02,Windows 10,benign,Benign reference to LaZagne,cmd.exe /c echo Investigating LaZagne,0,TN,Not separately recorded,
+v3,expanded_20_regression,B03,Windows 10,benign,PowerShell printed LaZagne.exe,"powershell.exe -NoProfile -Command ""Write-Output LaZagne.exe""",0,TN,Not separately recorded,
+v3,expanded_20_regression,B04,Windows 10,benign,Echo audit-test.exe browsers,cmd.exe /c echo audit-test.exe browsers,0,TN,Not separately recorded,
+v3,expanded_20_regression,B05,Windows 10,benign,Echo LaZagne incident report,cmd.exe /c echo Read the LaZagne incident report,0,TN,Not separately recorded,
+v3,expanded_20_regression,B06,Windows 10,benign,Legitimate Notepad,Start-Process notepad.exe,0,TN,Not separately recorded,
+v3,expanded_20_regression,B07,Windows 10,benign,Legitimate calculator,Start-Process calc.exe,0,TN,Not separately recorded,
+v3,expanded_20_regression,B08,Windows 10,benign,Legitimate Paint,Start-Process mspaint.exe,0,TN,Not separately recorded,
+v3,expanded_20_regression,B09,Windows 10,benign,Signed Notepad binary renamed LaZagne.exe,"Start-Process ""$benign\LaZagne.exe""",0,TN,Not separately recorded,"Rule v3 tuning was informed by B09; v3 re-test is regression, not hold-out."
+v3,expanded_20_regression,B10,Windows 10,benign,Signed Notepad binary renamed audit-test.exe,"Start-Process ""$benign\audit-test.exe""",0,TN,Not separately recorded,
+v3,expanded_20_regression,P01,Windows 10,positive,Original filename / help / PowerShell,"& ""$src"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P02,Windows 10,positive,Renamed-a / help,"& ""$lab\renamed-a.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P03,Windows 10,positive,Filename LaZagne.exe in folder with spaces,"& ""$lab\Folder With Spaces\LaZagne.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P04,Windows 10,positive,Renamed MAINTENANCE.EXE,"& ""$lab\MAINTENANCE.EXE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P05,Windows 10,positive,Renamed-b / help,"& ""$lab\renamed-b.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P06,Windows Server 2019,positive,Renamed-a / help,"& ""$lab\renamed-a.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P07,Windows Server 2019,positive,Filename LaZagne.exe in folder with spaces,"& ""$lab\Folder With Spaces\LaZagne.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P08,Windows Server 2019,positive,Mixed-case filename LaZaGnE.ExE,"& ""$lab\CaseCheck\LaZaGnE.ExE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P09,Windows Server 2019,positive,Renamed MAINTENANCE.EXE,"& ""$lab\MAINTENANCE.EXE"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,expanded_20_regression,P10,Windows Server 2019,positive,Renamed-b / help,"& ""$lab\renamed-b.exe"" -h",2,TP,Not separately recorded,"Known LaZagne binary/hash; variable filenames and launch context, not new binary versions."
+v3,independent_8,B11,Windows 10,benign,Unsigned benign .NET program named LaZagne.exe,"& ""$dir\LaZagne.exe""",1,FP,Yes,B11 hash 34b3e54b08891fcff0633a52de0107d9f29f1cadd5b712a656b95f148968fccf; FILE_IS_SIGNED=0
+v3,independent_8,B12,Windows 10,benign,Same benign program renamed benign-test.exe,"& ""$dir\benign-test.exe""",0,TN,Not separately recorded,Same compiled benign binary as B11 (not an independent binary sample).
+v3,independent_8,B13,Windows 10,benign,Same benign program with LaZagne.exe argument,"& ""$dir\benign-test.exe"" ""LaZagne.exe""",0,TN,Not separately recorded,Same compiled benign binary as B11 (not an independent binary sample).
+v3,independent_8,B14,Windows 10,benign,Same benign program renamed LaZagne-helper.exe,"& ""$dir\LaZagne-helper.exe""",0,TN,Not separately recorded,Same compiled benign binary as B11 (not an independent binary sample).
+v3,independent_8,B15,Windows 10,benign,Same benign program in directory named LaZagne.exe,"& ""$dir\B15\LaZagne.exe\utility.exe""",0,TN,Not separately recorded,Same compiled benign binary as B11 (not an independent binary sample).
+v3,independent_8,P11,Windows 10,positive,Known LaZagne hash; copied as security-check.exe; CMD launch,"cmd.exe /c ""\""$dst\"" -h""",2,TP,Not separately recorded,Known LaZagne binary/hash; not a novel sample.
+v3,independent_8,P12,Windows Server 2019,positive,Known LaZagne hash; copied as inventory.exe in new directory,"& ""$dir\Deep Folder\inventory.exe"" -h",2,TP,Not separately recorded,Known LaZagne binary/hash; not a novel sample.
+v3,independent_8,P13,Windows 10,positive,Known LaZagne hash; security-check.exe; PowerShell launch,"& ""$exe"" -h",2,TP,Not separately recorded,Known LaZagne binary/hash; not a novel sample.
+v1,final_paired_20,FB01,Windows 10,benign,Benign cmd argument ending in all,cmd.exe /c echo BENCH01 deploy all,1,FP,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v1,final_paired_20,FB02,Windows 10,benign,Benign word ending in all,cmd.exe /c echo BENCH02 reinstall,1,FP,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v1,final_paired_20,FB03,Windows 10,benign,Normal cmd output,cmd.exe /c echo BENCH03 normal operation,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,FB04,Windows 10,benign,Benign PowerShell text includes LaZagne,"powershell.exe -NoProfile -Command ""Write-Output 'LaZagne training notes'""",1,FP,Not individually verified,Matched 20-scenario paired benchmark; v1 contains-lazagne condition
+v1,final_paired_20,FB05,Windows 10,benign,Normal Notepad execution,Start-Process notepad.exe,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,FB06,Windows 10,benign,Normal Calculator execution,Start-Process calc.exe,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,FB07,Windows 10,benign,Signed Notepad copied to LaZagne.exe,Copy System32\notepad.exe to %TEMP%\LC-Final-Benchmark\LaZagne.exe; run copied file,1,FP,Not individually verified,Matched 20-scenario paired benchmark; Signed benign executable; v3 signed filename filtered
+v1,final_paired_20,FB08,Windows 10,benign,Unsigned benign .NET program named LaZagne.exe,Copy harmless unsigned .NET test binary (B11) to %TEMP%\LC-Final-Benchmark\FB08\LaZagne.exe; run,1,FP,Confirmed with corrected FB08 path on retest,Matched 20-scenario paired benchmark; Re-run with consistent FB08 path; v1/v3 results verified; hash prefix 34b3e54b
+v1,final_paired_20,FB09,Windows 10,benign,Benign cmd text mentions LaZagne,cmd.exe /c echo BENCH09 LaZagne documentation,1,FP,Not individually verified,Matched 20-scenario paired benchmark; v1 contains-lazagne condition
+v1,final_paired_20,FB10,Windows 10,benign,Benign cmd text ending in call,cmd.exe /c echo BENCH10 system call,1,FP,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v1,final_paired_20,BP01,Windows 10,positive,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows 10 LaZagne hash; help-mode tool identification test
+v1,final_paired_20,BP02,Windows 10,positive,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",0,FN,Confirmed NEW_PROCESS on retest,Matched 20-scenario paired benchmark; v1 FN; NEW_PROCESS confirmed in v1 retest; v3 alert confirmed
+v1,final_paired_20,BP03,Windows 10,positive,Renamed LaZagne with all argument,"& ""$work\security-check.exe"" all",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Controlled lab; one positive test execution yields two process detections
+v1,final_paired_20,BP04,Windows 10,positive,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,BP05,Windows 10,positive,Original LaZagne filename in directory with spaces,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,BP06,Windows Server 2019,positive,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows Server 2019 LaZagne hash
+v1,final_paired_20,BP07,Windows Server 2019,positive,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows Server 2019 LaZagne hash
+v1,final_paired_20,BP08,Windows Server 2019,positive,LaZagne in directory with spaces; help argument,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,BP09,Windows Server 2019,positive,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v1,final_paired_20,BP10,Windows Server 2019,positive,Renamed LaZagne launched via CMD,"cmd.exe /c ""`""$work\security-check.exe`"" -h""",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,FB01,Windows 10,benign,Benign cmd argument ending in all,cmd.exe /c echo BENCH01 deploy all,0,TN,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v3,final_paired_20,FB02,Windows 10,benign,Benign word ending in all,cmd.exe /c echo BENCH02 reinstall,0,TN,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v3,final_paired_20,FB03,Windows 10,benign,Normal cmd output,cmd.exe /c echo BENCH03 normal operation,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,FB04,Windows 10,benign,Benign PowerShell text includes LaZagne,"powershell.exe -NoProfile -Command ""Write-Output 'LaZagne training notes'""",0,TN,Not individually verified,Matched 20-scenario paired benchmark; v1 contains-lazagne condition
+v3,final_paired_20,FB05,Windows 10,benign,Normal Notepad execution,Start-Process notepad.exe,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,FB06,Windows 10,benign,Normal Calculator execution,Start-Process calc.exe,0,TN,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,FB07,Windows 10,benign,Signed Notepad copied to LaZagne.exe,Copy System32\notepad.exe to %TEMP%\LC-Final-Benchmark\LaZagne.exe; run copied file,0,TN,Not individually verified,Matched 20-scenario paired benchmark; Signed benign executable; v3 signed filename filtered
+v3,final_paired_20,FB08,Windows 10,benign,Unsigned benign .NET program named LaZagne.exe,Copy harmless unsigned .NET test binary (B11) to %TEMP%\LC-Final-Benchmark\FB08\LaZagne.exe; run,1,FP,Confirmed with corrected FB08 path on retest,Matched 20-scenario paired benchmark; Re-run with consistent FB08 path; v1/v3 results verified; hash prefix 34b3e54b
+v3,final_paired_20,FB09,Windows 10,benign,Benign cmd text mentions LaZagne,cmd.exe /c echo BENCH09 LaZagne documentation,0,TN,Not individually verified,Matched 20-scenario paired benchmark; v1 contains-lazagne condition
+v3,final_paired_20,FB10,Windows 10,benign,Benign cmd text ending in call,cmd.exe /c echo BENCH10 system call,0,TN,Not individually verified,Matched 20-scenario paired benchmark; Broad ends-with-all condition in v1
+v3,final_paired_20,BP01,Windows 10,positive,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows 10 LaZagne hash; help-mode tool identification test
+v3,final_paired_20,BP02,Windows 10,positive,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; v1 FN; NEW_PROCESS confirmed in v1 retest; v3 alert confirmed
+v3,final_paired_20,BP03,Windows 10,positive,Renamed LaZagne with all argument,"& ""$work\security-check.exe"" all",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Controlled lab; one positive test execution yields two process detections
+v3,final_paired_20,BP04,Windows 10,positive,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,BP05,Windows 10,positive,Original LaZagne filename in directory with spaces,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,BP06,Windows Server 2019,positive,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows Server 2019 LaZagne hash
+v3,final_paired_20,BP07,Windows Server 2019,positive,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark; Known Windows Server 2019 LaZagne hash
+v3,final_paired_20,BP08,Windows Server 2019,positive,LaZagne in directory with spaces; help argument,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,BP09,Windows Server 2019,positive,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,Not individually verified,Matched 20-scenario paired benchmark;
+v3,final_paired_20,BP10,Windows Server 2019,positive,Renamed LaZagne launched via CMD,"cmd.exe /c ""`""$work\security-check.exe`"" -h""",2,TP,Not individually verified,Matched 20-scenario paired benchmark;

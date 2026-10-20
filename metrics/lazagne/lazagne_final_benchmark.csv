@@ -1,0 +1,21 @@
+test_id,ground_truth,endpoint,scenario,command_or_action,v1_alert_count,v1_classification,v3_alert_count,v3_classification,v1_telemetry_checked,v3_telemetry_checked,notes
+FB01,benign,Windows 10,Benign cmd argument ending in all,cmd.exe /c echo BENCH01 deploy all,1,FP,0,TN,Not individually verified,Not individually verified,Broad ends-with-all condition in v1
+FB02,benign,Windows 10,Benign word ending in all,cmd.exe /c echo BENCH02 reinstall,1,FP,0,TN,Not individually verified,Not individually verified,Broad ends-with-all condition in v1
+FB03,benign,Windows 10,Normal cmd output,cmd.exe /c echo BENCH03 normal operation,0,TN,0,TN,Not individually verified,Not individually verified,
+FB04,benign,Windows 10,Benign PowerShell text includes LaZagne,"powershell.exe -NoProfile -Command ""Write-Output 'LaZagne training notes'""",1,FP,0,TN,Not individually verified,Not individually verified,v1 contains-lazagne condition
+FB05,benign,Windows 10,Normal Notepad execution,Start-Process notepad.exe,0,TN,0,TN,Not individually verified,Not individually verified,
+FB06,benign,Windows 10,Normal Calculator execution,Start-Process calc.exe,0,TN,0,TN,Not individually verified,Not individually verified,
+FB07,benign,Windows 10,Signed Notepad copied to LaZagne.exe,Copy System32\notepad.exe to %TEMP%\LC-Final-Benchmark\LaZagne.exe; run copied file,1,FP,0,TN,Not individually verified,Not individually verified,Signed benign executable; v3 signed filename filtered
+FB08,benign,Windows 10,Unsigned benign .NET program named LaZagne.exe,Copy harmless unsigned .NET test binary (B11) to %TEMP%\LC-Final-Benchmark\FB08\LaZagne.exe; run,1,FP,1,FP,"Yes, execution and event corroborated","Yes, signed/unsigned process evidence reviewed",Re-run with consistent FB08 path; v1/v3 results verified; hash prefix 34b3e54b
+FB09,benign,Windows 10,Benign cmd text mentions LaZagne,cmd.exe /c echo BENCH09 LaZagne documentation,1,FP,0,TN,Not individually verified,Not individually verified,v1 contains-lazagne condition
+FB10,benign,Windows 10,Benign cmd text ending in call,cmd.exe /c echo BENCH10 system call,1,FP,0,TN,Not individually verified,Not individually verified,Broad ends-with-all condition in v1
+BP01,positive,Windows 10,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,2,TP,Not individually verified,Not individually verified,Known Windows 10 LaZagne hash; help-mode tool identification test
+BP02,positive,Windows 10,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",0,FN,2,TP,"Yes, NEW_PROCESS verified during retest",Not individually verified,v1 FN; NEW_PROCESS confirmed in v1 retest; v3 alert confirmed
+BP03,positive,Windows 10,Renamed LaZagne with all argument,"& ""$work\security-check.exe"" all",2,TP,2,TP,Not individually verified,Not individually verified,Controlled lab; one positive test execution yields two process detections
+BP04,positive,Windows 10,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,2,TP,Not individually verified,Not individually verified,
+BP05,positive,Windows 10,Original LaZagne filename in directory with spaces,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,2,TP,Not individually verified,Not individually verified,
+BP06,positive,Windows Server 2019,Original LaZagne filename; help argument,"& ""$src"" -h",2,TP,2,TP,Not individually verified,Not individually verified,Known Windows Server 2019 LaZagne hash
+BP07,positive,Windows Server 2019,Renamed LaZagne; help argument,"& ""$work\audit-test.exe"" -h",2,TP,2,TP,Not individually verified,Not individually verified,Known Windows Server 2019 LaZagne hash
+BP08,positive,Windows Server 2019,LaZagne in directory with spaces; help argument,"& ""$work\Space Dir\LaZagne.exe"" -h",2,TP,2,TP,Not individually verified,Not individually verified,
+BP09,positive,Windows Server 2019,Case-variant LaZagne filename; help argument,"& ""$work\LaZaGnE.ExE"" -h",2,TP,2,TP,Not individually verified,Not individually verified,
+BP10,positive,Windows Server 2019,Renamed LaZagne launched via CMD,"cmd.exe /c ""`""$work\security-check.exe`"" -h""",2,TP,2,TP,Not individually verified,Not individually verified,

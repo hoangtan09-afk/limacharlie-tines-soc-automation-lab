@@ -1,0 +1,8 @@
+rule_version,test_suite,total_tests,positive_tests,benign_tests,TP,FN,FP,TN,recall_percent,false_positive_rate_percent,precision_percent,alerts_observed,reporting_note
+v1,baseline_16,16,6,10,5,1,5,5,83.33,50.0,50.0,15,Limited targeted test dataset; not production estimate
+v2,original_16_regression,16,6,10,6,0,0,10,100.0,0.0,100.0,12,Controlled lab; regression tests used during tuning
+v2,expanded_20,20,10,10,10,0,1,9,100.0,10.0,90.91,21,Limited targeted test dataset; not production estimate
+v3,expanded_20_regression,20,10,10,10,0,0,10,100.0,0.0,100.0,20,Controlled lab; regression tests used during tuning
+v3,independent_8,8,3,5,3,0,1,4,100.0,20.0,75.0,7,Limited targeted test dataset; not production estimate
+v1,final_paired_20,20,10,10,9,1,7,3,90.00,70.00,56.25,25,Same 20 controlled scenarios on both rules; manually recorded results; limited sample; reused benign artifacts
+v3,final_paired_20,20,10,10,10,0,1,9,100.00,10.00,90.91,21,Same 20 controlled scenarios on both rules; manually recorded results; limited sample; reused benign artifacts

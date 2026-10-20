@@ -23,6 +23,29 @@ The workflow uses a **human-in-the-loop response model**, ensuring that containm
 
 ---
 
+## Detection Engineering & Validation Results
+
+The original SOC automation lab has been extended with **independent detection-rule tuning, controlled test execution, and quantitative evaluation**. The current focus is on two detection rules: LaZagne and Suspicious PowerShell (PowerShell evaluation is planned).
+
+### LaZagne: Final Paired Benchmark (v1 → v3)
+
+| Test-level metric | v1 | v3 |
+|---|---:|---:|
+| True positives | 9 / 10 | 10 / 10 |
+| False negatives | 1 / 10 | 0 / 10 |
+| False positives | 7 / 10 | 1 / 10 |
+| True negatives | 3 / 10 | 9 / 10 |
+| **Detection recall** | **90%** | **100%** |
+| **False positive rate** | **70%** | **10%** |
+
+**Measured improvement:** **60 percentage points lower FPR**, and **10 percentage points higher detection recall**, over **20 paired, controlled scenarios** (10 benign + 10 positive, each evaluated against both rule versions). The unit of measurement is one execution, **not** one alert. These are targeted Windows lab tests, **not production rates**. Many positive tests reused two previously known LaZagne hashes, and an unsigned harmless executable named `LaZagne.exe` still triggered an FP.
+
+**Review the evidence:** [Tuning report](docs/LAZAGNE_RULE_TUNING_REPORT.md) · [Final benchmark CSV](metrics/lazagne/lazagne_final_benchmark.csv) · [All tuning trials](metrics/lazagne/lazagne_tuning_test_results.csv) · [Metrics summary](metrics/lazagne/lazagne_tuning_metrics_summary.csv).
+
+**Detection logic versions:** [v1](detection-rules/lazagne/lazagne_v1.yml) · [v2](detection-rules/lazagne/lazagne_v2.yml) · [v3](detection-rules/lazagne/lazagne_v3.yml). The archived YAML versions contain D&R **detection conditions only**; the LimaCharlie `report` response action is configured separately. The original combined rule remains at [lazagne-credential-access.yml](detection-rules/lazagne-credential-access.yml).
+
+---
+
 ## Architecture
 
 ![SOC Automation Architecture](architecture/ARCHITECTURE.png)
@@ -68,8 +91,8 @@ Slack   Email   User Prompt
 | Component | Purpose |
 |---|---|
 | Windows analyst workstation | Manages LimaCharlie, Tines, Slack, email, and response actions |
-| Windows Server VM | Endpoint used for LaZagne credential-access simulation |
-| Windows 11 Home VM | Endpoint used for PowerShell and Scheduled Task simulations |
+| Windows Server 2019 VM | Endpoint used for LaZagne validation |
+| Windows 10 VM | Endpoint used for detection validation and benign controls |
 | LimaCharlie | Endpoint telemetry, detection rules, remote tasking, and isolation |
 | Tines | Webhook ingestion, alerting, analyst approval, and response automation |
 | Slack | Real-time SOC alerting and response-status notifications |
@@ -248,26 +271,34 @@ The LaZagne use case uses an approved lab copy of the tool on the isolated test 
 ```text
 limacharlie-tines-soc-automation-lab/
 ├── README.md
-├── LICENSE
-├── .gitignore
 ├── architecture/
 │   └── ARCHITECTURE.png
 ├── detection-rules/
-│   ├── lazagne-credential-access.yml
+│   ├── lazagne-credential-access.yml        # Original rule export
+│   ├── lazagne/
+│   │   ├── lazagne_v1.yml
+│   │   ├── lazagne_v2.yml
+│   │   └── lazagne_v3.yml
 │   ├── suspicious-powershell.yml
 │   └── scheduled-task-persistence.yml
-├── tines-workflow/
-│   ├── workflow-overview.png
-│   └── workflow-sanitized.json
+├── metrics/
+│   └── lazagne/
+│       ├── lazagne_final_benchmark.csv
+│       ├── lazagne_tuning_test_results.csv
+│       └── lazagne_tuning_metrics_summary.csv
 ├── docs/
 │   ├── lab-environment.md
 │   ├── detection-use-cases.md
 │   ├── incident-response-flow.md
-│   └── testing-procedure.md
-└── evidence/
-    ├── 01-lazagne-credential-access/
-    ├── 02-suspicious-powershell/
-    └── 03-scheduled-task-persistence/
+│   ├── testing-procedure.md
+│   └── LAZAGNE_RULE_TUNING_REPORT.md
+├── evidence/
+│   ├── 01-lazagne-credential-access/
+│   ├── 02-suspicious-powershell/
+│   └── 03-scheduled-task-persistence/
+└── tines-workflow/
+    ├── workflow-overview.png
+    └── workflow-sanitized.json
 ```
 
 ---
@@ -278,6 +309,7 @@ limacharlie-tines-soc-automation-lab/
 - [Detection Use Cases](docs/detection-use-cases.md)
 - [Incident Response Flow](docs/incident-response-flow.md)
 - [Testing Procedure](docs/testing-procedure.md)
+- [LaZagne Rule Tuning Report](docs/LAZAGNE_RULE_TUNING_REPORT.md)
 
 ---
 
