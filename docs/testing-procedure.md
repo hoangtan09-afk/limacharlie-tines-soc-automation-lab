@@ -22,7 +22,7 @@ Before each test, verify:
 - The target VM is powered on.
 - The LimaCharlie sensor shows `Receiving`.
 - The sensor's `Last Time Alive` is current.
-- The Windows 11 Home sensor has the `win11-home` tag.
+- The selected sensor matches the rule's configured tag. The published PowerShell rule still uses the legacy `win11-home` tag; verify its scope before testing on Windows 10.
 - The relevant D&R rule is enabled.
 - The Tines Story is enabled.
 - Slack and email actions are connected.
@@ -36,7 +36,7 @@ Before each test, verify:
 ### Target
 
 ```text
-Windows Server VM
+Windows Server 2019 VM
 ```
 
 ### Command
@@ -69,7 +69,7 @@ Remove the lab tool from the endpoint after testing and restore the endpoint net
 ### Target
 
 ```text
-Windows 11 Home VM
+Windows 10 VM
 ```
 
 ### Safe Test Command
@@ -106,58 +106,8 @@ No persistent changes are created by this test.
 
 ---
 
-## 5. Test Case 3: Scheduled Task Creation
 
-### Target
-
-```text
-Windows 11 Home VM
-```
-
-### Safe Test Command
-
-Run PowerShell or Command Prompt as Administrator:
-
-```powershell
-schtasks.exe /Create /TN "SOC-LAB-PERSISTENCE" /SC ONLOGON /TR "notepad.exe" /F
-```
-
-This creates a scheduled task that opens Notepad when a user logs on.
-
-### Expected Result
-
-The detection pipeline should generate:
-
-```text
-Eric - Suspicious Scheduled Task Creation
-```
-
-The alert should contain:
-
-```text
-File Path: C:\Windows\System32\schtasks.exe
-Command Line: schtasks.exe /Create ...
-```
-
-### Cleanup
-
-Delete the test task:
-
-```powershell
-schtasks.exe /Delete /TN "SOC-LAB-PERSISTENCE" /F
-```
-
-Confirm removal:
-
-```powershell
-schtasks.exe /Query /TN "SOC-LAB-PERSISTENCE"
-```
-
-A successful cleanup should return an error indicating that the specified task cannot be found.
-
----
-
-## 6. Isolation Validation
+## 5. Isolation Validation
 
 When the User Prompt appears:
 
@@ -190,7 +140,7 @@ Network Access: Allowed
 
 ---
 
-## 7. Troubleshooting
+## 6. Troubleshooting
 
 ### Detection Does Not Appear
 
@@ -245,7 +195,7 @@ Verify that `last_update` changes over time before testing isolation again.
 
 ---
 
-## 8. Evidence Collection
+## 7. Evidence Collection
 
 For each use case, capture:
 

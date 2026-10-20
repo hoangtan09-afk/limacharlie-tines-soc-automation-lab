@@ -149,25 +149,6 @@ Eric - Suspicious PowerShell Execution
 T1059.001 - Command and Scripting Interpreter: PowerShell
 ```
 
-### 3. Suspicious Scheduled Task Creation
-
-Detects the creation of Windows Scheduled Tasks by monitoring:
-
-- `schtasks.exe`
-- The `/Create` command-line argument
-
-**Detection name:**
-
-```text
-Eric - Suspicious Scheduled Task Creation
-```
-
-**MITRE ATT&CK:**
-
-```text
-T1053.005 - Scheduled Task/Job: Scheduled Task
-```
-
 ---
 
 ## Alert Information
@@ -250,17 +231,6 @@ $encoded = [Convert]::ToBase64String(
 powershell.exe -NoProfile -EncodedCommand $encoded
 ```
 
-### Scheduled Task Test
-
-```powershell
-schtasks.exe /Create /TN "SOC-LAB-PERSISTENCE" /SC ONLOGON /TR "notepad.exe" /F
-```
-
-Cleanup:
-
-```powershell
-schtasks.exe /Delete /TN "SOC-LAB-PERSISTENCE" /F
-```
 
 The LaZagne use case uses an approved lab copy of the tool on the isolated test endpoint.
 
@@ -280,7 +250,6 @@ limacharlie-tines-soc-automation-lab/
 │   │   ├── lazagne_v2.yml
 │   │   └── lazagne_v3.yml
 │   ├── suspicious-powershell.yml
-│   └── scheduled-task-persistence.yml
 ├── metrics/
 │   └── lazagne/
 │       ├── lazagne_final_benchmark.csv
@@ -295,7 +264,6 @@ limacharlie-tines-soc-automation-lab/
 ├── evidence/
 │   ├── 01-lazagne-credential-access/
 │   ├── 02-suspicious-powershell/
-│   └── 03-scheduled-task-persistence/
 └── tines-workflow/
     ├── workflow-overview.png
     └── workflow-sanitized.json
@@ -368,8 +336,8 @@ Current limitations include:
 - Automated case creation
 - Detection deduplication
 - Parent-child process correlation
-- Additional LOLBin detections
-- Registry Run Key persistence detection
+- LaZagne false-positive reduction through stronger behavioral context
+- Suspicious PowerShell rule tuning and adversarial validation
 - Analyst identity and decision logging
 - Automatic rejoin workflow
 - SIEM integration
@@ -396,7 +364,7 @@ Current limitations include:
 
 This project is intended solely for defensive security education and authorized lab testing.
 
-Do not execute credential-access tools, persistence techniques, or endpoint isolation actions on systems without explicit permission.
+Do not execute credential-access tools or endpoint isolation actions on systems without explicit permission.
 
 ---
 

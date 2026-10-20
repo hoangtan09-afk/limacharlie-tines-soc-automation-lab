@@ -14,7 +14,6 @@ Examples include:
 
 - `LaZagne.exe all`
 - PowerShell with `-EncodedCommand`
-- `schtasks.exe /Create`
 
 LimaCharlie generates a detection containing the rule name, event details, endpoint routing information, and a detection link.
 
