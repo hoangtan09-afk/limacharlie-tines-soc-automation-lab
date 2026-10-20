@@ -15,8 +15,8 @@
       "guid": "8f6696418f3cecb8c115bf0c898b9eab",
       "origin_story_identifier": "cloud:d95a00b50174eaa97a93bd54b0bdc8cd:9f2b5187e20132401a99bce3f3c913a2",
       "options": {
-        "path": "2e0f9d3d23d1c6edfc5143e3760827f3",
-        "secret": "9e4ef67fc310654c6c6ea06fb31493d7",
+        "path": "REDACTED_WEBHOOK_PATH",
+        "secret": "REDACTED_WEBHOOK_SECRET",
         "verbs": "get,post"
       },
       "reporting": {
@@ -146,7 +146,7 @@
         "pages_appearance_mode": "light",
         "pages_background_color": "var(--pagesBackgroundLightMode)",
         "auto_close_tab_on_submit": false,
-        "url_identifier": "2ecd6c85e2280542089725e627d08782"
+        "url_identifier": "REDACTED_FORM_URL_IDENTIFIER"
       },
       "reporting": {
         "time_saved_value": 0,
