@@ -9,49 +9,43 @@ rules:
   - op: or
     rules:
       - case sensitive: false
-        op: ends with
+        file name: true
+        op: is
         path: event/FILE_PATH
         value: powershell.exe
       - case sensitive: false
-        op: ends with
+        file name: true
+        op: is
         path: event/FILE_PATH
         value: pwsh.exe
   - op: or
     rules:
       - case sensitive: false
-        op: contains
+        op: matches
         path: event/COMMAND_LINE
-        value: '-EncodedCommand'
+        re: (?:^|\s)-(?:e|enc|encodedcommand)\s+[A-Za-z0-9+/]{16,}={0,2}(?:\s|$)
       - case sensitive: false
-        op: contains
+        op: matches
         path: event/COMMAND_LINE
-        value: ' -enc '
+        re: (?:^|\s)-(?:w|windowstyle)\s+hidden(?:\s|$)
       - case sensitive: false
-        op: contains
+        op: matches
         path: event/COMMAND_LINE
-        value: FromBase64String
+        re: >-
+          (?:^|\s)-(?:c|command)\s+"?\s*(?:&\s*\{\s*)?(?:iex|invoke-expression)(?:\s|\()
       - case sensitive: false
-        op: contains
+        op: matches
         path: event/COMMAND_LINE
-        value: DownloadString
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: Invoke-Expression
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: '-WindowStyle Hidden'
-
+        re: (?:\)|\$[A-Za-z_][A-Za-z0-9_]*)\.DownloadString\s*\(
 
 Response:
 
 - action: report
   metadata:
     author: Eric
-    description: Detects encoded, hidden, or suspicious PowerShell execution
+    description: Lab-tuned PowerShell encoded, hidden, and suspicious command-line patterns (v3)
     level: medium
     tags:
       - attack.execution
       - attack.t1059.001
-  name: Eric - Suspicious PowerShell Execution
+  name: Eric - Suspicious PowerShell v3

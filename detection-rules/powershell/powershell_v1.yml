@@ -1,0 +1,43 @@
+# v1 original detection conditions (from archived combined rule)
+event: NEW_PROCESS
+op: and
+rules:
+  - op: is windows
+  - op: is tagged
+    tag: win11-home
+  - op: or
+    rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: powershell.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: pwsh.exe
+  - op: or
+    rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '-EncodedCommand'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: FromBase64String
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: DownloadString
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Invoke-Expression
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '-WindowStyle Hidden'

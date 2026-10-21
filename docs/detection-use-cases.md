@@ -9,7 +9,7 @@ This project focuses on two Windows detection use cases: **LaZagne credential-ac
 | Use Case | Endpoint | Data Source | MITRE ATT&CK |
 |---|---|---|---|
 | LaZagne execution | Windows 10 / Windows Server 2019 VMs | Process creation telemetry | Credential Access |
-| Suspicious PowerShell | Windows 10 VM (target for upcoming revalidation) | Process command line | T1059.001 – PowerShell |
+| Suspicious PowerShell | Windows 10 VM (lab-validated sensor) | Process command line | T1059.001 – PowerShell |
 
 ---
 
@@ -65,33 +65,18 @@ The detection is sent to Tines, which generates Slack and email notifications an
 
 Detect PowerShell executions containing encoded, hidden, or commonly abused command-line patterns.
 
-### Detection Scope
+### Detection Scope and Versions
 
-The exported PowerShell rule currently uses the legacy sensor tag:
+The Windows 10 sensor was explicitly assigned the legacy tag `win11-home` for consistency with the deployed test rule; the tag is **not an OS claim**. The current [v3 combined rule](../detection-rules/suspicious-powershell.yml) checks `NEW_PROCESS` command lines and filenames; see archived [v1](../detection-rules/powershell/powershell_v1.yml), [v2](../detection-rules/powershell/powershell_v2.yml), and [v3](../detection-rules/powershell/powershell_v3.yml).
 
-```text
-win11-home
-```
+### Evaluation
 
-**Validation note:** Before testing on the current Windows 10 VM, confirm that the selected sensor matches this tag or update the rule scope. The tag in the repository has not yet been revised.
+Paired first 20 lab cases: v1 FPR 60% / recall 60%, v2 FPR 10% / recall 90%. A separate 20-case set: v2 independent FPR 40% / recall 40%, followed by v3 **regression on that reused dataset** FPR 30% / recall 90%. Only 10/20 planned new v3 holdout cases were run (FPR 40% / recall 60%). These are benign and harmless suspicious-technique simulations, **not production malware detection rates**. See the [PowerShell report](POWERSHELL_RULE_TUNING_REPORT.md) and [CSV](../metrics/powershell/powershell_test_results.csv).
 
-### Detection Logic
-
-The rule monitors `NEW_PROCESS` events where:
-
-- The process path ends in `powershell.exe` or `pwsh.exe`
-- The command line contains one or more suspicious patterns, such as:
-  - `-EncodedCommand`
-  - `-enc`
-  - `FromBase64String`
-  - `DownloadString`
-  - `Invoke-Expression`
-  - `-WindowStyle Hidden`
-
-### Detection Name
+### Detection Name (repo v3 example)
 
 ```text
-Eric - Suspicious PowerShell Execution
+Eric - Suspicious PowerShell v3
 ```
 
 ### MITRE ATT&CK Mapping

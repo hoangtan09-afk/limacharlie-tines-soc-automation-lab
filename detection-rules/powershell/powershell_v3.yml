@@ -1,0 +1,38 @@
+# v3 detection conditions from the rule text shared after testing
+event: NEW_PROCESS
+op: and
+rules:
+  - op: is windows
+  - op: is tagged
+    tag: win11-home
+  - op: or
+    rules:
+      - case sensitive: false
+        file name: true
+        op: is
+        path: event/FILE_PATH
+        value: powershell.exe
+      - case sensitive: false
+        file name: true
+        op: is
+        path: event/FILE_PATH
+        value: pwsh.exe
+  - op: or
+    rules:
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        re: (?:^|\s)-(?:e|enc|encodedcommand)\s+[A-Za-z0-9+/]{16,}={0,2}(?:\s|$)
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        re: (?:^|\s)-(?:w|windowstyle)\s+hidden(?:\s|$)
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        re: >-
+          (?:^|\s)-(?:c|command)\s+"?\s*(?:&\s*\{\s*)?(?:iex|invoke-expression)(?:\s|\()
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        re: (?:\)|\$[A-Za-z_][A-Za-z0-9_]*)\.DownloadString\s*\(

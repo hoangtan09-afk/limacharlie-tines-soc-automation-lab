@@ -1,0 +1,6 @@
+version,dataset,phase,total_executions,positive_simulations,benign_cases,TP,FN,FP,TN,recall_percent,false_positive_rate_percent,precision_percent,alerts_observed,limitations
+v1,baseline_20,paired_baseline,20,10,10,6,4,6,4,60.00,60.00,50.00,12,Controlled lab; hand-recorded results; some non-alert events unverified
+v2,baseline_20,paired_regression,20,10,10,9,1,1,9,90.00,10.00,90.00,10,Controlled lab; hand-recorded results; some non-alert events unverified
+v2,independent_20,independent_v2,20,10,10,4,6,4,6,40.00,40.00,50.00,8,Controlled lab; hand-recorded results; some non-alert events unverified
+v3,independent_20,regression_v3_tuning_informed,20,10,10,9,1,3,7,90.00,30.00,75.00,12,Controlled lab; hand-recorded results; some non-alert events unverified
+v3,holdout_batch1_10,partial_v3_holdout,10,5,5,3,2,2,3,60.00,40.00,60.00,5,PARTIAL: holdout Batch 2 not executed

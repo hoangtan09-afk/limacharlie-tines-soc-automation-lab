@@ -25,7 +25,7 @@ The workflow uses a **human-in-the-loop response model**, ensuring that containm
 
 ## Detection Engineering & Validation Results
 
-The original SOC automation lab has been extended with **independent detection-rule tuning, controlled test execution, and quantitative evaluation**. The current focus is on two detection rules: LaZagne and Suspicious PowerShell (PowerShell evaluation is planned).
+The original SOC automation lab has been extended with **independent detection-rule tuning, controlled test execution, and quantitative evaluation**. The two evaluated detection rules are LaZagne and Suspicious PowerShell; both include controlled lab metrics and explicit limitations.
 
 ### LaZagne: Final Paired Benchmark (v1 → v3)
 
@@ -43,6 +43,22 @@ The original SOC automation lab has been extended with **independent detection-r
 **Review the evidence:** [Tuning report](docs/LAZAGNE_RULE_TUNING_REPORT.md) · [Final benchmark CSV](metrics/lazagne/lazagne_final_benchmark.csv) · [All tuning trials](metrics/lazagne/lazagne_tuning_test_results.csv) · [Metrics summary](metrics/lazagne/lazagne_tuning_metrics_summary.csv).
 
 **Detection logic versions:** [v1](detection-rules/lazagne/lazagne_v1.yml) · [v2](detection-rules/lazagne/lazagne_v2.yml) · [v3](detection-rules/lazagne/lazagne_v3.yml). The archived YAML versions contain D&R **detection conditions only**; the LimaCharlie `report` response action is configured separately. The original combined rule remains at [lazagne-credential-access.yml](detection-rules/lazagne-credential-access.yml).
+
+---
+
+### Suspicious PowerShell: v1–v3 Rule Tuning
+
+| Dataset | Rule | TP | FN | FP | TN | FPR | Technique recall |
+|---|---|---:|---:|---:|---:|---:|---:|
+| First 20 cases | v1 | 6 | 4 | 6 | 4 | **60%** | **60%** |
+| **Same** first 20 | v2 | 9 | 1 | 1 | 9 | **10%** | **90%** |
+| New 20 independent | v2 | 4 | 6 | 4 | 6 | 40% | 40% |
+| **Same** second 20 regression | v3 | 9 | 1 | 3 | 7 | 30% | 90% |
+| **Only 10/20** new v3 holdout | v3 | 3 | 2 | 2 | 3 | 40% | 60% |
+
+**Reporting limits:** Only the first 20-case v1/v2 benchmark is a directly paired v1/v2 comparison (FPR −50 and recall +30 percentage points). The second 20 cases influenced v3 tuning, so the v3 regression is not independent. The planned v3 holdout was **not completed**. In total, **90 scored test executions** were manually recorded; they include repeated scenarios, and positives were harmless technique simulations, not confirmed attacks.
+
+**Artifacts:** [PowerShell tuning report](docs/POWERSHELL_RULE_TUNING_REPORT.md) · [test results CSV](metrics/powershell/powershell_test_results.csv) · [metrics CSV](metrics/powershell/powershell_metrics_summary.csv) · [v1](detection-rules/powershell/powershell_v1.yml) · [v2](detection-rules/powershell/powershell_v2.yml) · [v3](detection-rules/powershell/powershell_v3.yml).
 
 ---
 
@@ -130,17 +146,16 @@ Credential Access
 
 Detects PowerShell processes containing suspicious execution patterns, including:
 
-- `-EncodedCommand`
-- `-enc`
-- `FromBase64String`
-- `DownloadString`
-- `Invoke-Expression`
-- `-WindowStyle Hidden`
+- Encoded startup arguments (`-EncodedCommand`, `-enc`, `-e`)
+- Hidden window arguments (`-WindowStyle Hidden`, `-w Hidden`)
+- Selected `iex` / `Invoke-Expression` invocations and `DownloadString` patterns
+
+This is a process-command-line heuristic, not malicious script-content inspection.
 
 **Detection name:**
 
 ```text
-Eric - Suspicious PowerShell Execution
+Eric - Suspicious PowerShell v3
 ```
 
 **MITRE ATT&CK:**
@@ -249,18 +264,27 @@ limacharlie-tines-soc-automation-lab/
 │   │   ├── lazagne_v1.yml
 │   │   ├── lazagne_v2.yml
 │   │   └── lazagne_v3.yml
-│   ├── suspicious-powershell.yml
+│   ├── suspicious-powershell.yml        # Combined v3 example
+│   └── powershell/
+│       ├── powershell_v1.yml
+│       ├── powershell_v2.yml
+│       └── powershell_v3.yml
 ├── metrics/
-│   └── lazagne/
-│       ├── lazagne_final_benchmark.csv
-│       ├── lazagne_tuning_test_results.csv
-│       └── lazagne_tuning_metrics_summary.csv
+│   ├── lazagne/
+│   │   ├── lazagne_final_benchmark.csv
+│   │   ├── lazagne_tuning_test_results.csv
+│   │   └── lazagne_tuning_metrics_summary.csv
+│   └── powershell/
+│       ├── README.md
+│       ├── powershell_test_results.csv
+│       └── powershell_metrics_summary.csv
 ├── docs/
 │   ├── lab-environment.md
 │   ├── detection-use-cases.md
 │   ├── incident-response-flow.md
 │   ├── testing-procedure.md
-│   └── LAZAGNE_RULE_TUNING_REPORT.md
+│   ├── LAZAGNE_RULE_TUNING_REPORT.md
+│   └── POWERSHELL_RULE_TUNING_REPORT.md
 ├── evidence/
 │   ├── 01-lazagne-credential-access/
 │   ├── 02-suspicious-powershell/
@@ -278,6 +302,8 @@ limacharlie-tines-soc-automation-lab/
 - [Incident Response Flow](docs/incident-response-flow.md)
 - [Testing Procedure](docs/testing-procedure.md)
 - [LaZagne Rule Tuning Report](docs/LAZAGNE_RULE_TUNING_REPORT.md)
+- [PowerShell Rule Tuning Report](docs/POWERSHELL_RULE_TUNING_REPORT.md)
+- [PowerShell Test Data](metrics/powershell/README.md)
 
 ---
 
@@ -337,7 +363,7 @@ Current limitations include:
 - Detection deduplication
 - Parent-child process correlation
 - LaZagne false-positive reduction through stronger behavioral context
-- Suspicious PowerShell rule tuning and adversarial validation
+- Optional PowerShell Script Block Logging (Event ID 4104) and telemetry/context enrichment
 - Analyst identity and decision logging
 - Automatic rejoin workflow
 - SIEM integration
@@ -370,4 +396,4 @@ Do not execute credential-access tools or endpoint isolation actions on systems 
 
 ## License
 
-This project is licensed under the terms defined in the repository's `LICENSE` file.
+No `LICENSE` file has been added, so licensing terms remain unspecified.

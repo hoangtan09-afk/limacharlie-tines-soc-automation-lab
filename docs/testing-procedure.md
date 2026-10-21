@@ -22,7 +22,7 @@ Before each test, verify:
 - The target VM is powered on.
 - The LimaCharlie sensor shows `Receiving`.
 - The sensor's `Last Time Alive` is current.
-- The selected sensor matches the rule's configured tag. The published PowerShell rule still uses the legacy `win11-home` tag; verify its scope before testing on Windows 10.
+- The selected sensor matches the rule's configured tag (`win11-home` was manually assigned to the Windows 10 lab sensor).
 - The relevant D&R rule is enabled.
 - The Tines Story is enabled.
 - Slack and email actions are connected.
@@ -95,7 +95,7 @@ LIMACHARLIE-POWERSHELL-TEST
 The detection pipeline should generate:
 
 ```text
-Eric - Suspicious PowerShell Execution
+Eric - Suspicious PowerShell v3
 ```
 
 The Slack, email, and User Prompt outputs should show the PowerShell file path and encoded command line.
@@ -106,6 +106,12 @@ No persistent changes are created by this test.
 
 ---
 
+
+### PowerShell Tuning Test Record
+
+PowerShell v1/v2/v3 testing comprised **90 scored executions** across five phases. Only **10/20** planned v3 holdout cases were run. See [report](POWERSHELL_RULE_TUNING_REPORT.md), [per-test CSV](../metrics/powershell/powershell_test_results.csv), and [metrics summary](../metrics/powershell/powershell_metrics_summary.csv). These metrics score lab execution techniques, not malicious outcomes.
+
+---
 
 ## 5. Isolation Validation
 

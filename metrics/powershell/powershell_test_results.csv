@@ -1,0 +1,91 @@
+version,dataset,phase,test_id,ground_truth,scenario,alert_count,classification,source,notes
+v1,baseline_20,paired_baseline,B01,benign,Normal PowerShell output,0,TN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B02,benign,Normal Get-Date,0,TN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B03,benign,Documentation: -EncodedCommand,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B04,benign,Legitimate encoded Get-Date,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B05,benign,Normal Get-Service,0,TN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B06,benign,Documentation: FromBase64String,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B07,benign,Legitimate Base64 decode,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B08,benign,Documentation: DownloadString,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B09,benign,OS info query,0,TN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,B10,benign,Documentation: Invoke-Expression,1,FP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P01,technique_simulation,EncodedCommand,1,TP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P02,technique_simulation,Invoke-Expression,1,TP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P03,technique_simulation,IEX alias,0,FN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P04,technique_simulation,WindowStyle Hidden,1,TP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P05,technique_simulation,Encoded -e,0,FN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P06,technique_simulation,Hidden -w,0,FN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P07,technique_simulation,Encoded -enc,1,TP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P08,technique_simulation,Dynamic IEX,0,FN,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P09,technique_simulation,DownloadString loopback,1,TP,user_reported,Lab command line; no malware used
+v1,baseline_20,paired_baseline,P10,technique_simulation,Mixed-case EncodedCommand,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B01,benign,Normal PowerShell output,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B02,benign,Normal Get-Date,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B03,benign,Documentation: -EncodedCommand,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B04,benign,Legitimate encoded Get-Date,1,FP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B05,benign,Normal Get-Service,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B06,benign,Documentation: FromBase64String,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B07,benign,Legitimate Base64 decode,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B08,benign,Documentation: DownloadString,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B09,benign,OS info query,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,B10,benign,Documentation: Invoke-Expression,0,TN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P01,technique_simulation,EncodedCommand,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P02,technique_simulation,Invoke-Expression,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P03,technique_simulation,IEX alias,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P04,technique_simulation,WindowStyle Hidden,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P05,technique_simulation,Encoded -e,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P06,technique_simulation,Hidden -w,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P07,technique_simulation,Encoded -enc,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P08,technique_simulation,Dynamic IEX,0,FN,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P09,technique_simulation,DownloadString loopback,1,TP,user_reported,Lab command line; no malware used
+v2,baseline_20,paired_regression,P10,technique_simulation,Mixed-case EncodedCommand,1,TP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B01,benign,Process enumeration,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B02,benign,Documentation: IEX,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B03,benign,Documentation: .DownloadString(,1,FP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B04,benign,Normal window style,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B05,benign,Legitimate encoded environment query,1,FP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B06,benign,Environment inspection,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B07,benign,Legitimate Invoke-Expression,1,FP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B08,benign,Legitimate hidden service query,1,FP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B09,benign,IEX documentation,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-B10,benign,Legitimate ExecutionPolicy Bypass,0,TN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P01,technique_simulation,EncodedCommand + NoLogo,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P02,technique_simulation,Encoded -e + ExecutionPolicy Bypass,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P03,technique_simulation,IEX with -c,1,TP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P04,technique_simulation,Hidden + NonInteractive,1,TP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P05,technique_simulation,Dynamic Invoke-Expression,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P06,technique_simulation,Encoded + NonInteractive,1,TP,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P07,technique_simulation,Encoded + ExecutionPolicy Bypass,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P08,technique_simulation,IEX in ScriptBlock,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P09,technique_simulation,Hidden + NoLogo,0,FN,user_reported,Lab command line; no malware used
+v2,independent_20,independent_v2,IV-P10,technique_simulation,DownloadString loopback,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B01,benign,Process enumeration,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B02,benign,Documentation: IEX,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B03,benign,Documentation: .DownloadString(,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B04,benign,Normal window style,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B05,benign,Legitimate encoded environment query,1,FP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B06,benign,Environment inspection,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B07,benign,Legitimate Invoke-Expression,1,FP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B08,benign,Legitimate hidden service query,1,FP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B09,benign,IEX documentation,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-B10,benign,Legitimate ExecutionPolicy Bypass,0,TN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P01,technique_simulation,EncodedCommand + NoLogo,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P02,technique_simulation,Encoded -e + ExecutionPolicy Bypass,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P03,technique_simulation,IEX with -c,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P04,technique_simulation,Hidden + NonInteractive,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P05,technique_simulation,Dynamic Invoke-Expression,0,FN,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P06,technique_simulation,Encoded + NonInteractive,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P07,technique_simulation,Encoded + ExecutionPolicy Bypass,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P08,technique_simulation,IEX in ScriptBlock,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P09,technique_simulation,Hidden + NoLogo,1,TP,user_reported,Lab command line; no malware used
+v3,independent_20,regression_v3_tuning_informed,IV-P10,technique_simulation,DownloadString loopback,1,TP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-B01,benign,Normal environment query,0,TN,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-B02,benign,Documentation: -enc Base64-like string,0,TN,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-B03,benign,Documentation: .DownloadString(,1,FP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-B04,benign,Minimized PowerShell,0,TN,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-B05,benign,Legitimate encoded Get-Location,1,FP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-P01,technique_simulation,Encoded + multiple flags,1,TP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-P02,technique_simulation,IEX expression,1,TP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-P03,technique_simulation,Hidden + reordered flags,1,TP,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-P04,technique_simulation,Dynamic IEX in ScriptBlock,0,FN,user_reported,Lab command line; no malware used
+v3,holdout_batch1_10,partial_v3_holdout,H-P05,technique_simulation,IEX via pipeline,0,FN,user_reported,Lab command line; no malware used

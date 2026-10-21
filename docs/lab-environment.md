@@ -10,7 +10,7 @@ This lab implements a small SOC detection and response environment using LimaCha
 |---|---|
 | Windows analyst workstation | Used to manage LimaCharlie, Tines, Slack, email, and incident-response actions |
 | Windows Server 2019 VM | Monitored endpoint used for LaZagne detection validation |
-| Windows 10 VM | Monitored endpoint used for LaZagne testing and planned Suspicious PowerShell validation |
+| Windows 10 VM | Monitored endpoint used for LaZagne testing and Suspicious PowerShell rule validation |
 | LimaCharlie | Endpoint telemetry collection, custom D&R rules, detections, remote tasking, and network isolation |
 | Tines | Webhook ingestion, alert enrichment, notifications, analyst approval, and response automation |
 | Slack | Real-time SOC alerting and response-status notifications |
@@ -21,7 +21,7 @@ This lab implements a small SOC detection and response environment using LimaCha
 
 LimaCharlie sensors are installed on the monitored Windows endpoints using an installation key generated from the LimaCharlie organization.
 
-The repository's current Suspicious PowerShell rule still references the legacy sensor tag `win11-home`. Before validation on Windows 10, verify or adjust the rule's scope. The two use cases in scope are LaZagne and Suspicious PowerShell.
+The Windows 10 lab sensor was manually assigned the preexisting tag `win11-home`, matching the PowerShell rules; the tag does not describe the guest OS. PowerShell v1/v2/v3 testing is recorded in the [tuning report](POWERSHELL_RULE_TUNING_REPORT.md). The two use cases in scope are LaZagne and Suspicious PowerShell.
 
 ## 4. High-Level Data Flow
 
